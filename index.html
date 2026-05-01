@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hugh Huang | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --gold: #e8a838;
+            --gold-dark: #d4922a;
+            --slate: #4a5568;
+            --slate-dark: #2d3748;
+            --slate-darker: #1a202c;
+            --light: #f7fafc;
+            --white: #ffffff;
+            --gray: #718096;
+            --gray-light: #e2e8f0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--slate-dark);
+            background: var(--light);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 32, 44, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0 2rem;
+            transition: box-shadow 0.3s;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 1.25rem;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--gold);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--gray-light);
+            transition: 0.3s;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--slate-darker) 0%, #2a3a50 50%, var(--slate-dark) 100%);
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(232, 168, 56, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            max-width: 1100px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .hero-text {
+            flex: 1;
+        }
+
+        .hero-greeting {
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-name {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -1px;
+        }
+
+        .hero-name span {
+            color: var(--gold);
+        }
+
+        .hero-tagline {
+            font-size: 1.15rem;
+            color: var(--gray);
+            max-width: 480px;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.85rem 1.75rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--slate-darker);
+        }
+
+        .btn-primary:hover {
+            background: var(--gold-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(232, 168, 56, 0.3);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--gray);
+            color: var(--gray-light);
+            background: transparent;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .hero-photo {
+            flex-shrink: 0;
+        }
+
+        .photo-wrapper {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--gold);
+            box-shadow: 0 0 0 8px rgba(232, 168, 56, 0.1), 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Section common */
+        .section {
+            padding: 5rem 2rem;
+        }
+
+        .section-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            color: var(--slate-darker);
+            letter-spacing: -0.5px;
+        }
+
+        .section-title span {
+            color: var(--gold);
+        }
+
+        .section-subtitle {
+            color: var(--gray);
+            margin-bottom: 3rem;
+            font-size: 1.05rem;
+        }
+
+        /* About */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .about-text p {
+            color: var(--slate);
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+        }
+
+        .info-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+        }
+
+        .info-list li {
+            font-size: 0.95rem;
+            color: var(--slate);
+        }
+
+        .info-list li strong {
+            color: var(--slate-darker);
+            display: block;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 2px;
+        }
+
+        /* Skills */
+        .skills-section {
+            background: var(--white);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--light);
+            padding: 1.75rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .skill-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--slate-darker);
+        }
+
+        /* Experience */
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--gold), var(--gray-light));
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 6px;
+            width: 14px;
+            height: 14px;
+            background: var(--gold);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+            transform: translateX(-5.5px);
+            box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.2);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--slate-darker);
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-date {
+            font-size: 0.85rem;
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .timeline-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .timeline-item li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.4rem;
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+
+        .timeline-item li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        /* Education */
+        .education-section {
+            background: var(--white);
+        }
+
+        .edu-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--gold);
+            max-width: 600px;
+        }
+
+        .edu-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--slate-darker);
+            margin-bottom: 0.25rem;
+        }
+
+        .edu-card .edu-years {
+            font-size: 0.9rem;
+            color: var(--gold-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .edu-card .edu-award {
+            display: inline-block;
+            background: rgba(232, 168, 56, 0.15);
+            color: var(--gold-dark);
+            padding: 0.3rem 0.85rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* Projects */
+        .project-card {
+            background: var(--white);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            max-width: 500px;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-preview {
+            height: 220px;
+            background: linear-gradient(135deg, var(--slate-darker), #2a3a50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-preview::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(232, 168, 56, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(100, 150, 255, 0.1) 0%, transparent 50%);
+        }
+
+        .project-emoji {
+            font-size: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-body {
+            padding: 1.75rem;
+        }
+
+        .project-body h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--slate-darker);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-body p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gold-dark);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: gap 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* Contact */
+        .contact-section {
+            background: var(--slate-darker);
+            color: var(--white);
+        }
+
+        .contact-section .section-title {
+            color: var(--white);
+        }
+
+        .contact-section .section-subtitle {
+            color: var(--gray);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 1.75rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            color: inherit;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(232, 168, 56, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+        }
+
+        .contact-info h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gray);
+            margin-bottom: 4px;
+        }
+
+        .contact-info p {
+            font-size: 1rem;
+            color: var(--gray-light);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #111827;
+            color: var(--gray);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 64px;
+                left: 0;
+                right: 0;
+                background: var(--slate-darker);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1rem;
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.open {
+                display: flex;
+            }
+
+            .hero-content {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero-name {
+                font-size: 2.5rem;
+            }
+
+            .hero-tagline {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .photo-wrapper {
+                width: 220px;
+                height: 220px;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .info-list {
+                grid-template-columns: 1fr;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">HH</a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+            <span></span><span></span><span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+    <div class="hero-content">
+        <div class="hero-text">
+            <p class="hero-greeting">Hello, I'm</p>
+            <h1 class="hero-name">Hugh <span>Huang</span></h1>
+            <p class="hero-tagline">
+                Bilingual, BC WorkSafe certified, and First Aid certified student with a passion for environment protection, live streaming, and collaborative teamwork.
+            </p>
+            <div class="hero-buttons">
+                <a href="Hugh Huang's CV.pdf" class="btn btn-primary" target="_blank">Download CV</a>
+                <a href="#contact" class="btn btn-outline">Get in Touch</a>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <div class="photo-wrapper">
+                <img src="e3d970ecc3d22fd9cf143e0452098151.jpg" alt="Hugh Huang">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About -->
+<section class="section" id="about">
+    <div class="section-inner fade-in">
+        <h2 class="section-title">About <span>Me</span></h2>
+        <p class="section-subtitle">A quick overview of who I am</p>
+        <div class="about-grid">
+            <div class="about-text">
+                <p>
+                    I'm a Grade 10 student at Moscrop Secondary School with a strong interest in environmental protection and growing plants. I bring hands-on experience in live streaming production, people management, and collaborative event coordination.
+                </p>
+                <p>
+                    Through my volunteer work, I've contributed to community events like the Central Park Run and the Spring Festival Gala, where I operated cameras, managed equipment setups, and helped improve operational efficiency.
+                </p>
+            </div>
+            <ul class="info-list">
+                <li><strong>Name</strong>Hugh Huang</li>
+                <li><strong>School</strong>Moscrop Secondary</li>
+                <li><strong>Grade</strong>10</li>
+                <li><strong>Location</strong>Burnaby, BC</li>
+                <li><strong>Languages</strong>English, Mandarin</li>
+                <li><strong>Certifications</strong>BC WorkSafe, First Aid</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Skills -->
+<section class="section skills-section" id="skills">
+    <div class="section-inner fade-in">
+        <h2 class="section-title">My <span>Skills</span></h2>
+        <p class="section-subtitle">What I bring to the table</p>
+        <div class="skills-grid">
+            <div class="skill-card">
+                <div class="skill-icon">&#127760;</div>
+                <h3>Bilingual</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">&#127909;</div>
+                <h3>Live Streaming</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">&#9200;</div>
+                <h3>Time Management</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">&#128101;</div>
+                <h3>People Management</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">&#128161;</div>
+                <h3>Problem Solving</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">&#129309;</div>
+                <h3>Collaborating</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">&#129657;</div>
+                <h3>First Aid</h3>
+            </div>
+            <div class="skill-card">
+                <div class="skill-icon">&#128187;</div>
+                <h3>Game Development</h3>
+                <p style="font-size:0.85rem;color:var(--gray);margin-top:0.4rem;">C# &middot; JavaScript</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Experience -->
+<section class="section" id="experience">
+    <div class="section-inner fade-in">
+        <h2 class="section-title">Volunteer <span>Experience</span></h2>
+        <p class="section-subtitle">Making an impact in my community</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>Spring Festival Gala &mdash; Burnaby South</h3>
+                <div class="timeline-date">January 11, 2026</div>
+                <ul>
+                    <li>Assisted in streaming equipment set ups</li>
+                    <li>Operated cameras for live broadcast</li>
+                    <li>Increased viewership by 12%</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>Central Park Run &mdash; Central Park</h3>
+                <div class="timeline-date">Nov 2025 &ndash; Jan 2026</div>
+                <ul>
+                    <li>Assisted in equipment set ups</li>
+                    <li>Managed people and coordinated volunteers</li>
+                    <li>Handled wrap-up work after runners finished</li>
+                    <li>Improved efficiency by an average of 15 minutes</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Education -->
+<section class="section education-section" id="education">
+    <div class="section-inner fade-in">
+        <h2 class="section-title">My <span>Education</span></h2>
+        <p class="section-subtitle">Where I'm learning and growing</p>
+        <div class="edu-card">
+            <h3>Moscrop Secondary School</h3>
+            <div class="edu-years">2023 &ndash; 2028 &nbsp;|&nbsp; Currently Grade 10</div>
+            <span class="edu-award">&#127942; Honour Roll</span>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section class="section" id="projects">
+    <div class="section-inner fade-in">
+        <h2 class="section-title">My <span>Projects</span></h2>
+        <p class="section-subtitle">Things I've built</p>
+        <div class="project-card">
+            <div class="project-preview">
+                <div class="project-emoji">&#127918;</div>
+            </div>
+            <div class="project-body">
+                <h3>Web Game</h3>
+                <p>A browser-based game I created and published online. Check it out and have some fun!</p>
+                <a href="https://jinggg666.github.io/gameweb/" class="project-link" target="_blank">
+                    Play the Game &rarr;
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact -->
+<section class="section contact-section" id="contact">
+    <div class="section-inner fade-in">
+        <h2 class="section-title">Get in <span>Touch</span></h2>
+        <p class="section-subtitle">Feel free to reach out</p>
+        <div class="contact-grid">
+            <a href="mailto:zhengjiehugh@gmail.com" class="contact-card">
+                <div class="contact-icon">&#9993;</div>
+                <div class="contact-info">
+                    <h4>Email</h4>
+                    <p>zhengjiehugh@gmail.com</p>
+                </div>
+            </a>
+            <a href="tel:672-971-3296" class="contact-card">
+                <div class="contact-icon">&#128222;</div>
+                <div class="contact-info">
+                    <h4>Phone</h4>
+                    <p>672-971-3296</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    &copy; 2026 Hugh Huang. All rights reserved.
+</footer>
+
+<script>
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Mobile menu toggle
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
