@@ -346,43 +346,34 @@
         }
 
         /* Experience */
-        .timeline {
-            position: relative;
-            padding-left: 2rem;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 3px;
-            background: linear-gradient(to bottom, var(--gold), var(--gray-light));
-            border-radius: 3px;
-        }
-
-        .timeline-item {
-            position: relative;
+        .exp-entry {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
             margin-bottom: 2.5rem;
-            padding-left: 2rem;
+            align-items: start;
         }
 
-        .timeline-item::before {
+        .exp-details {
+            position: relative;
+            padding-left: 2rem;
+            border-left: 3px solid var(--gold);
+        }
+
+        .exp-details::before {
             content: '';
             position: absolute;
-            left: -2rem;
+            left: -9px;
             top: 6px;
             width: 14px;
             height: 14px;
             background: var(--gold);
             border-radius: 50%;
-            border: 3px solid var(--white);
-            transform: translateX(-5.5px);
+            border: 3px solid var(--light);
             box-shadow: 0 0 0 3px rgba(232, 168, 56, 0.2);
         }
 
-        .timeline-item h3 {
+        .exp-details h3 {
             font-size: 1.15rem;
             font-weight: 700;
             color: var(--slate-darker);
@@ -396,12 +387,12 @@
             margin-bottom: 0.75rem;
         }
 
-        .timeline-item ul {
+        .exp-details ul {
             list-style: none;
             padding: 0;
         }
 
-        .timeline-item li {
+        .exp-details li {
             position: relative;
             padding-left: 1.25rem;
             margin-bottom: 0.4rem;
@@ -409,7 +400,7 @@
             font-size: 0.95rem;
         }
 
-        .timeline-item li::before {
+        .exp-details li::before {
             content: '';
             position: absolute;
             left: 0;
@@ -418,6 +409,34 @@
             height: 6px;
             background: var(--gold);
             border-radius: 50%;
+        }
+
+        .exp-reflection {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--gold);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        .exp-reflection h4 {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold-dark);
+            margin-bottom: 0.75rem;
+        }
+
+        .exp-reflection p {
+            color: var(--slate);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .exp-entry {
+                grid-template-columns: 1fr;
+            }
         }
 
         /* Education */
@@ -455,54 +474,6 @@
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 600;
-        }
-
-        /* Reflections */
-        .reflections-section {
-            background: var(--white);
-        }
-
-        .reflection-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
-
-        .reflection-card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 2rem;
-            border-left: 4px solid var(--gold);
-            transition: all 0.3s;
-        }
-
-        .reflection-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-        }
-
-        .reflection-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--slate-darker);
-            margin-bottom: 0.75rem;
-        }
-
-        .reflection-card p {
-            color: var(--slate);
-            font-size: 0.95rem;
-            line-height: 1.7;
-        }
-
-        .reflection-label {
-            display: inline-block;
-            background: rgba(232, 168, 56, 0.15);
-            color: var(--gold-dark);
-            padding: 0.2rem 0.7rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
         }
 
         /* Projects */
@@ -734,7 +705,6 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
-            <li><a href="#reflections">Reflections</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -836,13 +806,14 @@
     </div>
 </section>
 
-<!-- Experience -->
+<!-- Experience & Reflections -->
 <section class="section" id="experience">
     <div class="section-inner fade-in">
         <h2 class="section-title">Volunteer <span>Experience</span></h2>
-        <p class="section-subtitle">Making an impact in my community</p>
-        <div class="timeline">
-            <div class="timeline-item">
+        <p class="section-subtitle">Making an impact in my community &mdash; and what I learned</p>
+
+        <div class="exp-entry">
+            <div class="exp-details">
                 <h3>Spring Festival Gala &mdash; Burnaby South</h3>
                 <div class="timeline-date">January 11, 2026</div>
                 <ul>
@@ -851,7 +822,14 @@
                     <li>Increased viewership by 12%</li>
                 </ul>
             </div>
-            <div class="timeline-item">
+            <div class="exp-reflection">
+                <h4>Reflection</h4>
+                <p>Controlling live streaming taught me how to publicize effectively. I learned what titles and materials catch people's eyes, which will help me when making websites or promotional content in the future.</p>
+            </div>
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-details">
                 <h3>Central Park Run &mdash; Central Park</h3>
                 <div class="timeline-date">Nov 2025 &ndash; Jan 2026</div>
                 <ul>
@@ -862,16 +840,14 @@
                     <li>Improved efficiency by an average of 15 minutes</li>
                 </ul>
             </div>
-            <div class="timeline-item">
-                <h3>North America Artist Association &mdash; Media / Live Streamer</h3>
-                <div class="timeline-date">2025 &ndash; 2026</div>
-                <ul>
-                    <li>Controlled live streaming within a collaborative team</li>
-                    <li>Selected titles and materials to maximize viewer engagement</li>
-                    <li>Gained experience in publicizing and media outreach</li>
-                </ul>
+            <div class="exp-reflection">
+                <h4>Reflection</h4>
+                <p>As a tail walker, I learned how to motivate runners and keep them safe while finishing duties efficiently. This experience showed me I can uplift teammates and maintain safety in any working environment.</p>
             </div>
-            <div class="timeline-item">
+        </div>
+
+        <div class="exp-entry">
+            <div class="exp-details">
                 <h3>Moscrop Lunar New Year Event &mdash; Chess Organizer</h3>
                 <div class="timeline-date">2026</div>
                 <ul>
@@ -880,7 +856,12 @@
                     <li>Developed communication and people management skills</li>
                 </ul>
             </div>
+            <div class="exp-reflection">
+                <h4>Reflection</h4>
+                <p>Organizing chess and teaching visitors the rules gave me real experience in communication and people management. I'm confident these skills will carry over into future teamwork and leadership roles.</p>
+            </div>
         </div>
+
     </div>
 </section>
 
@@ -893,31 +874,6 @@
             <h3>Moscrop Secondary School</h3>
             <div class="edu-years">2023 &ndash; 2028 &nbsp;|&nbsp; Currently Grade 10</div>
             <span class="edu-award">&#127942; Honour Roll</span>
-        </div>
-    </div>
-</section>
-
-<!-- Reflections -->
-<section class="section reflections-section" id="reflections">
-    <div class="section-inner fade-in">
-        <h2 class="section-title">Self <span>Reflections</span></h2>
-        <p class="section-subtitle">What I learned from my volunteer experiences</p>
-        <div class="reflection-cards">
-            <div class="reflection-card">
-                <span class="reflection-label">Live Streaming</span>
-                <h3>North America Artist Association</h3>
-                <p>Controlling live streaming taught me how to publicize effectively. I learned what titles and materials catch people's eyes, which will help me when making websites or promotional content in the future.</p>
-            </div>
-            <div class="reflection-card">
-                <span class="reflection-label">People Management</span>
-                <h3>Moscrop Lunar New Year Event</h3>
-                <p>Organizing chess and teaching visitors the rules gave me real experience in communication and people management. I'm confident these skills will carry over into future teamwork and leadership roles.</p>
-            </div>
-            <div class="reflection-card">
-                <span class="reflection-label">Motivation &amp; Safety</span>
-                <h3>Central Park Run</h3>
-                <p>As a tail walker, I learned how to motivate runners and keep them safe while finishing duties efficiently. This experience showed me I can uplift teammates and maintain safety in any working environment.</p>
-            </div>
         </div>
     </div>
 </section>
