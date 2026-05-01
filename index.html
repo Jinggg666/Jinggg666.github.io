@@ -457,6 +457,54 @@
             font-weight: 600;
         }
 
+        /* Reflections */
+        .reflections-section {
+            background: var(--white);
+        }
+
+        .reflection-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .reflection-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--gold);
+            transition: all 0.3s;
+        }
+
+        .reflection-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .reflection-card h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--slate-darker);
+            margin-bottom: 0.75rem;
+        }
+
+        .reflection-card p {
+            color: var(--slate);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .reflection-label {
+            display: inline-block;
+            background: rgba(232, 168, 56, 0.15);
+            color: var(--gold-dark);
+            padding: 0.2rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
         /* Projects */
         .project-card {
             background: var(--white);
@@ -686,6 +734,7 @@
             <li><a href="#skills">Skills</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
+            <li><a href="#reflections">Reflections</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -706,6 +755,7 @@
             </p>
             <div class="hero-buttons">
                 <a href="Hugh Huang's CV.pdf" class="btn btn-primary" target="_blank">Download CV</a>
+                <a href="Hugh Huang P10 Volunteer Self-Reflection.pdf" class="btn btn-outline" target="_blank">Self-Reflection</a>
                 <a href="#contact" class="btn btn-outline">Get in Touch</a>
             </div>
         </div>
@@ -807,8 +857,27 @@
                 <ul>
                     <li>Assisted in equipment set ups</li>
                     <li>Managed people and coordinated volunteers</li>
+                    <li>Tail walker and sweeper &mdash; keeping runners safe and motivated</li>
                     <li>Handled wrap-up work after runners finished</li>
                     <li>Improved efficiency by an average of 15 minutes</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>North America Artist Association &mdash; Media / Live Streamer</h3>
+                <div class="timeline-date">2025 &ndash; 2026</div>
+                <ul>
+                    <li>Controlled live streaming within a collaborative team</li>
+                    <li>Selected titles and materials to maximize viewer engagement</li>
+                    <li>Gained experience in publicizing and media outreach</li>
+                </ul>
+            </div>
+            <div class="timeline-item">
+                <h3>Moscrop Lunar New Year Event &mdash; Chess Organizer</h3>
+                <div class="timeline-date">2026</div>
+                <ul>
+                    <li>Organized and managed chess activities for visitors</li>
+                    <li>Taught rules and guided participants through games</li>
+                    <li>Developed communication and people management skills</li>
                 </ul>
             </div>
         </div>
@@ -824,6 +893,31 @@
             <h3>Moscrop Secondary School</h3>
             <div class="edu-years">2023 &ndash; 2028 &nbsp;|&nbsp; Currently Grade 10</div>
             <span class="edu-award">&#127942; Honour Roll</span>
+        </div>
+    </div>
+</section>
+
+<!-- Reflections -->
+<section class="section reflections-section" id="reflections">
+    <div class="section-inner fade-in">
+        <h2 class="section-title">Self <span>Reflections</span></h2>
+        <p class="section-subtitle">What I learned from my volunteer experiences</p>
+        <div class="reflection-cards">
+            <div class="reflection-card">
+                <span class="reflection-label">Live Streaming</span>
+                <h3>North America Artist Association</h3>
+                <p>Controlling live streaming taught me how to publicize effectively. I learned what titles and materials catch people's eyes, which will help me when making websites or promotional content in the future.</p>
+            </div>
+            <div class="reflection-card">
+                <span class="reflection-label">People Management</span>
+                <h3>Moscrop Lunar New Year Event</h3>
+                <p>Organizing chess and teaching visitors the rules gave me real experience in communication and people management. I'm confident these skills will carry over into future teamwork and leadership roles.</p>
+            </div>
+            <div class="reflection-card">
+                <span class="reflection-label">Motivation &amp; Safety</span>
+                <h3>Central Park Run</h3>
+                <p>As a tail walker, I learned how to motivate runners and keep them safe while finishing duties efficiently. This experience showed me I can uplift teammates and maintain safety in any working environment.</p>
+            </div>
         </div>
     </div>
 </section>
