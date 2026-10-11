@@ -522,6 +522,35 @@
             font-weight: 600;
         }
 
+        .edu-clubs {
+            margin-top: 1.25rem;
+        }
+
+        .club-list {
+            list-style: none;
+            margin-top: 0.85rem;
+            display: grid;
+            gap: 0.55rem;
+        }
+
+        .club-list li {
+            position: relative;
+            padding-left: 1.1rem;
+            color: var(--slate);
+            font-size: 0.95rem;
+        }
+
+        .club-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
         /* Projects */
         .project-card {
             background: var(--white);
@@ -975,6 +1004,14 @@
             <h3>Moscrop Secondary School</h3>
             <div class="edu-years">2023 &ndash; 2028 &nbsp;|&nbsp; <span id="edu-grade">Currently Grade 11</span></div>
             <span class="edu-award">&#127942; Honour Roll</span>
+        </div>
+        <div class="edu-card edu-clubs">
+            <h3>My Clubs</h3>
+            <ul class="club-list">
+                <li>Hardware Innovation Club</li>
+                <li>AI Go Club</li>
+                <li>Computer Programming Club</li>
+            </ul>
         </div>
     </div>
 </section>
