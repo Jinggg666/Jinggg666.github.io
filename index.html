@@ -790,7 +790,7 @@
         <div class="about-grid">
             <div class="about-text">
                 <p>
-                    I'm a Grade 10 student at Moscrop Secondary School with a strong interest in environmental protection and computer science. I bring hands-on experience in live streaming production, people management, and collaborative event coordination.
+                    I'm a <span id="about-status">Grade 11 student at Moscrop Secondary School</span> with a strong interest in environmental protection and computer science. I bring hands-on experience in live streaming production, people management, and collaborative event coordination.
                 </p>
                 <p>
                     Through my volunteer work, I've contributed to community events like the Central Park Run and the Spring Festival Gala, where I operated cameras, managed equipment setups, and helped improve operational efficiency.
@@ -799,7 +799,7 @@
             <ul class="info-list">
                 <li><strong>Name</strong>Hugh Huang</li>
                 <li><strong>School</strong>Moscrop Secondary</li>
-                <li><strong>Grade</strong>10</li>
+                <li><strong>Grade</strong><span id="info-grade">11</span></li>
                 <li><strong>Location</strong>Burnaby, BC</li>
                 <li><strong>Languages</strong>English, Mandarin</li>
                 <li><strong>Certifications</strong>BC WorkSafe, First Aid</li>
@@ -973,7 +973,7 @@
         <p class="section-subtitle">Where I'm learning and growing</p>
         <div class="edu-card">
             <h3>Moscrop Secondary School</h3>
-            <div class="edu-years">2023 &ndash; 2028 &nbsp;|&nbsp; Currently Grade 10</div>
+            <div class="edu-years">2023 &ndash; 2028 &nbsp;|&nbsp; <span id="edu-grade">Currently Grade 11</span></div>
             <span class="edu-award">&#127942; Honour Roll</span>
         </div>
     </div>
@@ -1066,6 +1066,35 @@
 </footer>
 
 <script>
+    // Grade 11 covers September 2026 through August 2027, then advances each September.
+    function schoolStatus(date) {
+        const schoolYear = date.getMonth() >= 8 ? date.getFullYear() : date.getFullYear() - 1;
+        const grade = 11 + (schoolYear - 2026);
+        if (grade > 12) {
+            return {
+                about: 'Moscrop Secondary School graduate (Class of 2028)',
+                info: 'Class of 2028',
+                edu: 'Graduated, Class of 2028'
+            };
+        }
+        const shown = Math.max(grade, 8);
+        return {
+            about: 'Grade ' + shown + ' student at Moscrop Secondary School',
+            info: String(shown),
+            edu: 'Currently Grade ' + shown
+        };
+    }
+
+    (function applySchoolStatus() {
+        const status = schoolStatus(new Date());
+        const about = document.getElementById('about-status');
+        const info = document.getElementById('info-grade');
+        const edu = document.getElementById('edu-grade');
+        if (about) about.textContent = status.about;
+        if (info) info.textContent = status.info;
+        if (edu) edu.textContent = status.edu;
+    })();
+
     // Navbar scroll effect
     window.addEventListener('scroll', () => {
         document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
