@@ -38,7 +38,7 @@
 
         html {
             scroll-behavior: smooth;
-            scroll-padding-top: 80px;
+            scroll-padding-top: 28px;
         }
 
         body {
@@ -48,83 +48,104 @@
             line-height: 1.6;
             overflow-x: hidden;
             counter-reset: scene;
+            padding-left: 208px;
         }
 
         /* Navigation */
         nav {
             position: fixed;
             top: 0;
-            width: 100%;
-            background: rgba(7, 8, 15, 0.86);
+            left: 0;
+            bottom: 0;
+            width: 208px;
+            background: rgba(7, 8, 15, 0.94);
             backdrop-filter: blur(10px);
             z-index: 1000;
-            padding: 0 2rem;
-            transition: box-shadow 0.3s;
-        }
-
-        nav.scrolled {
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        nav::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 1px;
-            background: var(--brass);
+            padding: 1.6rem 1.15rem;
+            border-right: 1px solid rgba(62, 240, 224, 0.4);
+            box-shadow: 8px 0 28px rgba(0, 0, 0, 0.28);
         }
 
         .nav-inner {
-            max-width: 1100px;
-            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 64px;
+            flex-direction: column;
+            align-items: stretch;
+            gap: 1.75rem;
+            height: 100%;
         }
 
         .nav-logo {
-            font-weight: 800;
-            font-size: 1.25rem;
+            font-weight: 700;
+            font-size: 1.7rem;
             color: var(--gold);
             text-decoration: none;
-            letter-spacing: -0.5px;
+            letter-spacing: 0.08em;
+            padding: 0 0.35rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            flex-direction: column;
+            gap: 0.25rem;
             list-style: none;
         }
 
         .nav-links a {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
             color: var(--gray-light);
             text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.2s;
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            padding: 0.55rem 0.55rem;
+            transition: color 0.2s, background 0.2s;
             position: relative;
+        }
+
+        .nav-icon {
+            width: 28px;
+            height: 28px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            color: var(--cyan);
+            border: 1px solid rgba(62, 240, 224, 0.45);
+            background: rgba(62, 240, 224, 0.06);
+        }
+
+        .nav-icon svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            top: 0;
+            bottom: 0;
             left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--gold);
-            transition: width 0.3s;
+            width: 2px;
+            height: 0;
+            margin: auto;
+            background: var(--magenta);
+            transition: height 0.25s;
         }
 
         .nav-links a:hover {
-            color: var(--gold);
+            color: var(--cyan);
+            background: rgba(62, 240, 224, 0.06);
         }
 
         .nav-links a:hover::after {
-            width: 100%;
+            height: 100%;
         }
 
         .hamburger {
@@ -132,6 +153,13 @@
             flex-direction: column;
             cursor: pointer;
             gap: 5px;
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 1100;
+            background: rgba(7, 8, 15, 0.92);
+            border: 1px solid rgba(62, 240, 224, 0.45);
+            padding: 10px;
         }
 
         .hamburger span {
@@ -148,7 +176,7 @@
             align-items: center;
             justify-content: center;
             background: linear-gradient(135deg, var(--slate-darker) 0%, #2a3a50 50%, var(--slate-dark) 100%);
-            padding: 6rem 2rem 4rem;
+            padding: 4rem 2.5rem;
             position: relative;
             overflow: hidden;
         }
@@ -336,7 +364,7 @@
             margin-bottom: 0.5rem;
             color: var(--slate-darker);
             letter-spacing: -0.5px;
-            scroll-margin-top: 92px;
+            scroll-margin-top: 28px;
         }
 
         .section-title span {
@@ -839,25 +867,41 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
+            body {
+                padding-left: 0;
+                padding-top: 64px;
             }
 
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 64px;
+            body::before {
+                content: '';
+                position: fixed;
+                top: 0;
                 left: 0;
                 right: 0;
-                background: var(--slate-darker);
-                flex-direction: column;
-                padding: 1.5rem 2rem;
-                gap: 1rem;
-                border-top: 1px solid rgba(255,255,255,0.1);
+                height: 64px;
+                background: rgba(7, 8, 15, 0.94);
+                border-bottom: 1px solid rgba(62, 240, 224, 0.4);
+                z-index: 1090;
             }
 
-            .nav-links.open {
+            .hamburger {
                 display: flex;
+                top: 14px;
+            }
+
+            nav {
+                width: min(240px, 84vw);
+                transform: translateX(-110%);
+                transition: transform 0.28s ease;
+            }
+
+            nav.menu-open {
+                transform: translateX(0);
+                padding-top: 4.2rem;
+            }
+
+            .hero {
+                padding-top: 5rem;
             }
 
             .hero-content {
@@ -1283,20 +1327,20 @@
 <body>
 
 <!-- Navigation -->
+<button class="hamburger" id="hamburger" type="button" aria-label="Open menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+</button>
 <nav id="navbar">
     <div class="nav-inner">
         <a href="#" class="nav-logo">HH</a>
         <ul class="nav-links" id="navLinks">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#about"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 19.2c1.3-3 3.6-4.5 6.5-4.5s5.2 1.5 6.5 4.5"/></svg></span>About</a></li>
+            <li><a href="#skills"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3.5l1.8 5.4H19.5L15 12.4l1.7 5.3L12 14.4l-4.7 3.3L9 12.4 4.5 8.9h5.7z"/></svg></span>Skills</a></li>
+            <li><a href="#experience"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13"/><path d="M8 7V5.5h8V7M3 12h18"/></svg></span>Experience</a></li>
+            <li><a href="#education"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9.5L12 5l9 4.5-9 4.5z"/><path d="M7 11.5V16c1.6 1.3 3.2 2 5 2s3.4-.7 5-2v-4.5"/></svg></span>Education</a></li>
+            <li><a href="#projects"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 8L4 12l4 4M16 8l4 4-4 4"/></svg></span>Projects</a></li>
+            <li><a href="#contact"><span class="nav-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14"/><path d="M3 7l9 7 9-7"/></svg></span>Contact</a></li>
         </ul>
-        <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-            <span></span><span></span><span></span>
-        </div>
     </div>
 </nav>
 
@@ -1725,13 +1769,13 @@
 
     // Mobile menu toggle
     function toggleMenu() {
-        document.getElementById('navLinks').classList.toggle('open');
+        document.getElementById('navbar').classList.toggle('menu-open');
     }
 
     // Close mobile menu on link click
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.addEventListener('click', () => {
-            document.getElementById('navLinks').classList.remove('open');
+            document.getElementById('navbar').classList.remove('menu-open');
         });
     });
 
