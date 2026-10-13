@@ -1735,16 +1735,27 @@
         });
     });
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+    // Replay the entrance each time a section comes back into view.
+    const scenes = document.querySelectorAll('.fade-in');
+
+    function sceneOnScreen(el) {
+        const rect = el.getBoundingClientRect();
+        return rect.bottom > 0 && rect.top < window.innerHeight;
+    }
+
+    function syncScenes() {
+        scenes.forEach(el => {
+            if (sceneOnScreen(el)) {
+                if (!el.classList.contains('visible')) el.classList.add('visible');
+            } else {
+                el.classList.remove('visible');
             }
         });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }
 
-    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    window.addEventListener('scroll', syncScenes, { passive: true });
+    window.addEventListener('resize', syncScenes);
+    syncScenes();
 
     // Lightbox
     function openLightbox(img) {
